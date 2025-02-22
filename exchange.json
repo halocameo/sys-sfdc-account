@@ -1,0 +1,11 @@
+{
+  "main": "sys-sfdc-account.yaml",
+  "name": "sys-sfdc-account",
+  "classifier": "oas",
+  "organizationId": "",
+  "descriptorVersion": "1.0.0",
+  "tags": [],
+  "groupId": "",
+  "assetId": "sys-sfdc-account",
+  "version": "1.0.0"
+}
