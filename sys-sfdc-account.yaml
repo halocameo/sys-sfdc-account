@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: sys-sfdc-account
+paths:
+ /customers:
+    get:
+      responses:
+        '200':
+          description: retrieve a list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "12345"
+                    customerData:
+                      $ref: "#/components/schemas/Customer"
+    post:
+      responses:
+        '201':
+          description: successfully registered a customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+ "/customers/{customerId}":
+    parameters:
+    - name: customerId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      responses:
+        "200": 
+          description: retrieve a customer record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "12345"
+                  customerData:
+                    $ref: "#/components/schemas/Customer"
+    put:
+      responses:
+        "200": 
+          description: updated a customer record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+    delete:
+      responses:
+        "200": 
+          description: deleted a customer record 
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          example: USA
+        state:
+          type: string
+          example: California
+        city:
+          type: string
+          example: Riverside
+        streetAddress:
+          type: string
+          example: Eastlawn 42
+        zipCode:
+          type: string
+          example: "92513"
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Acme Corporation
+        email:
+          type: string
+          example: abc@acme.com
+        billingAddress:
+          $ref: "#/components/schemas/Address"
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
